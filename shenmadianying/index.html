@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神马电影院在线第九影院-在线观影指南_影院影片分类与选片清单</title>
+<meta name="description" content="神马电影院在线第九影院是一个围绕在线观影的导航与选片页面，整理影片分类入口、热门类型、选片要点与观影小贴士，帮助访客快速找到想看的片子。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101626'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f5b23e' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23f5b23e'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0d111f;
+    --bg-soft:#141a2c;
+    --card:#171f33;
+    --line:#28324a;
+    --text:#e8ecf6;
+    --muted:#9aa6c0;
+    --gold:#f5b23e;
+    --gold-soft:#3a2f18;
+    --teal:#4fd1c5;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.75;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+  .skip{position:absolute;left:-9999px;}
+  .skip:focus{left:12px;top:12px;z-index:99;background:var(--gold);color:#1a1206;padding:8px 14px;border-radius:8px;}
+
+  /* Header */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(13,17,31,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .head-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:18px;padding:12px 0;
+  }
+  .brand{display:flex;align-items:center;gap:11px;min-width:0;}
+  .brand-mark{
+    width:42px;height:42px;flex:0 0 auto;
+    border-radius:12px;background:var(--gold-soft);
+    display:grid;place-items:center;
+  }
+  .brand-text{
+    font-size:17px;font-weight:700;letter-spacing:.5px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .brand-text small{display:block;font-size:11px;font-weight:400;color:var(--muted);letter-spacing:2px;}
+  nav.main-nav{display:flex;gap:22px;font-size:14.5px;color:var(--muted);}
+  nav.main-nav a{padding:4px 0;border-bottom:2px solid transparent;transition:.2s;}
+  nav.main-nav a:hover,nav.main-nav a:focus-visible{color:var(--gold);border-bottom-color:var(--gold);}
+  .head-cta{
+    background:var(--gold);color:#1a1206;font-weight:700;font-size:14px;
+    padding:9px 18px;border-radius:999px;white-space:nowrap;transition:.2s;
+  }
+  .head-cta:hover{filter:brightness(1.08);}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);
+    border-radius:10px;width:42px;height:42px;font-size:18px;cursor:pointer;}
+
+  /* Hero */
+  .hero{
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(900px 420px at 78% -10%,rgba(245,178,62,.16),transparent 65%),
+      radial-gradient(700px 380px at 8% 110%,rgba(79,209,197,.12),transparent 60%),
+      var(--bg-soft);
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:44px;
+    align-items:center;padding:56px 0 60px;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:2px;color:var(--gold);
+    border:1px solid rgba(245,178,62,.4);border-radius:999px;
+    padding:5px 14px;margin-bottom:20px;
+  }
+  h1{
+    font-size:clamp(26px,3.6vw,40px);
+    line-height:1.35;font-weight:800;letter-spacing:.5px;
+    margin-bottom:18px;
+  }
+  h1 .hl{color:var(--gold);}
+  .hero-lead{color:var(--muted);font-size:16px;max-width:35em;margin-bottom:26px;}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--gold);color:#1a1206;font-weight:700;
+    padding:13px 26px;border-radius:12px;font-size:15.5px;transition:.2s;
+  }
+  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .btn-ghost{
+    display:inline-flex;align-items:center;gap:9px;
+    border:1px solid var(--line);color:var(--text);
+    padding:13px 24px;border-radius:12px;font-size:15px;transition:.2s;
+  }
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+  .hero-facts{display:flex;gap:28px;margin-top:30px;flex-wrap:wrap;}
+  .fact b{display:block;font-size:21px;color:var(--gold);font-weight:800;}
+  .fact span{font-size:12.5px;color:var(--muted);letter-spacing:1px;}
+
+  /* Hero visual: film screen illustration */
+  .screen-art{
+    position:relative;border-radius:18px;overflow:hidden;
+    border:1px solid var(--line);
+    background:linear-gradient(160deg,#1c2440,#121829);
+    padding:22px;
+  }
+  .screen-art .row{display:flex;gap:10px;margin-bottom:12px;}
+  .poster{
+    flex:1;border-radius:10px;aspect-ratio:2/3;
+    background:linear-gradient(180deg,#26304d,#1a2136);
+    position:relative;overflow:hidden;
+  }
+  .poster::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55));
+  }
+  .poster.p1{background:linear-gradient(170deg,#3c2a1a,#1a2136);}
+  .poster.p2{background:linear-gradient(170deg,#1d3a3a,#1a2136);}
+  .poster.p3{background:linear-gradient(170deg,#33203a,#1a2136);}
+  .poster .cap{
+    position:absolute;left:9px;right:9px;bottom:9px;z-index:2;
+    font-size:11px;color:#dfe6f5;line-height:1.4;
+  }
+  .play-badge{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:46px;height:46px;border-radius:50%;
+    background:rgba(245,178,62,.92);display:grid;place-items:center;z-index:3;
+    box-shadow:0 8px 24px rgba(0,0,0,.45);
+  }
+  .screen-line{height:6px;border-radius:99px;background:#232c44;margin-top:10px;}
+  .screen-line.short{width:58%;}
+
+  /* Sections */
+  section{padding:58px 0;}
+  .sec-head{margin-bottom:30px;max-width:44em;}
+  .kicker{font-size:12.5px;letter-spacing:2.5px;color:var(--teal);margin-bottom:10px;}
+  h2{font-size:clamp(21px,2.5vw,27px);font-weight:800;line-height:1.4;margin-bottom:12px;}
+  .sec-head p{color:var(--muted);font-size:15px;}
+
+  /* Category grid */
+  .cat-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+  }
+  .cat{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px;transition:.22s;
+  }
+  .cat:hover{border-color:rgba(245,178,62,.55);transform:translateY(-3px);}
+  .cat-ico{
+    width:40px;height:40px;border-radius:11px;background:var(--gold-soft);
+    display:grid;place-items:center;margin-bottom:14px;
+  }
+  .cat h3{font-size:16.5px;font-weight:700;margin-bottom:8px;}
+  .cat p{font-size:14px;color:var(--muted);}
+  .cat .tag{
+    display:inline-block;margin-top:14px;font-size:12px;color:var(--gold);
+    border:1px solid rgba(245,178,62,.35);border-radius:999px;padding:3px 10px;
+  }
+
+  /* Film list */
+  .film-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .film{
+    display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:var(--radius);padding:16px;transition:.2s;
+  }
+  .film:hover{border-color:rgba(79,209,197,.5);}
+  .film-thumb{
+    width:78px;flex:0 0 78px;aspect-ratio:2/3;border-radius:9px;
+    background:linear-gradient(165deg,#2a3454,#18203a);
+    display:grid;place-items:center;
+  }
+  .film-body h3{font-size:15.5px;font-weight:700;margin-bottom:5px;}
+  .film-body .meta{font-size:12.5px;color:var(--muted);margin-bottom:8px;letter-spacing:.5px;}
+  .film-body p{font-size:13.5px;color:#c3ccdf;}
+  .pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
+  .pills span{
+    font-size:11.5px;color:var(--teal);border:1px solid rgba(79,209,197,.3);
+    border-radius:999px;padding:2px 9px;
+  }
+
+  /* Guide: steps + tips */
+  .guide-wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:start;}
+  .steps{list-style:none;counter-reset:step;}
+  .steps li{
+    counter-increment:step;position:relative;
+    padding:0 0 22px 54px;border-left:1px solid var(--line);margin-left:16px;
+  }
+  .steps li:last-child{border-left-color:transparent;padding-bottom:0;}
+  .steps li::before{
+    content:counter(step,decimal-leading-zero);
+    position:absolute;left:-16px;top:-4px;
+    width:32px;height:32px;border-radius:50%;
+    background:var(--bg-soft);border:1px solid var(--gold);
+    color:var(--gold);font-size:12.5px;font-weight:700;
+    display:grid;place-items:center;
+  }
+  .steps h3{font-size:15.5px;font-weight:700;margin-bottom:6px;}
+  .steps p{font-size:14px;color:var(--muted);}
+  .tip-card{
+    background:linear-gradient(165deg,#1b2338,#141a2c);
+    border:1px solid var(--line);border-radius:var(--radius);padding:24px;
+  }
+  .tip-card h3{font-size:16px;font-weight:700;margin-bottom:14px;color:var(--gold);}
+  .tip-card ul{list-style:none;display:grid;gap:12px;}
+  .tip-card li{font-size:14px;color:#c3ccdf;padding-left:20px;position:relative;}
+  .tip-card li::before{
+    content:"";position:absolute;left:0;top:9px;
+    width:7px;height:7px;border-radius:50%;background:var(--teal);
+  }
+
+  /* FAQ */
+  .faq{display:grid;gap:14px;}
+  details{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;
+  }
+  details[open]{border-color:rgba(245,178,62,.45);}
+  summary{
+    cursor:pointer;font-size:15.5px;font-weight:700;list-style:none;
+    display:flex;justify-content:space-between;gap:14px;align-items:center;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:"+";color:var(--gold);font-size:20px;line-height:1;font-weight:400;}
+  details[open] summary::after{content:"–";}
+  details p{margin-top:12px;font-size:14px;color:var(--muted);}
+
+  /* Download / end cap */
+  .endcap{
+    background:
+      radial-gradient(700px 300px at 15% 0%,rgba(245,178,62,.13),transparent 65%),
+      var(--bg-soft);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .endcap-inner{
+    display:flex;align-items:center;justify-content:space-between;gap:30px;
+    padding:44px 0;flex-wrap:wrap;
+  }
+  .endcap h2{margin-bottom:8px;}
+  .endcap p{color:var(--muted);font-size:14.5px;max-width:36em;}
+  .dl-btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--gold);color:#1a1206;font-weight:700;
+    padding:13px 28px;border-radius:12px;font-size:15.5px;
+    pointer-events:none;opacity:.95;
+  }
+
+  /* Footer */
+  footer.site{padding:40px 0 34px;color:var(--muted);font-size:13.5px;}
+  .foot-top{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;padding-bottom:24px;border-bottom:1px solid var(--line);}
+  .foot-brand{display:flex;gap:11px;align-items:center;max-width:32em;}
+  .foot-brand strong{color:var(--text);font-size:15px;}
+  .foot-brand p{font-size:13px;margin-top:4px;}
+  .foot-links{display:flex;gap:30px;flex-wrap:wrap;}
+  .foot-links h4{font-size:13px;color:var(--text);margin-bottom:9px;font-weight:700;}
+  .foot-links a{display:block;font-size:13px;padding:2px 0;}
+  .foot-links a:hover{color:var(--gold);}
+  .foot-bottom{padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;}
+
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:34px;padding:40px 0 46px;}
+    .screen-art{max-width:440px;}
+    .cat-grid{grid-template-columns:repeat(2,1fr);}
+    .guide-wrap{grid-template-columns:1fr;}
+    .film-list{grid-template-columns:1fr;}
+  }
+  @media(max-width:720px){
+    nav.main-nav{
+      display:none;position:absolute;left:0;right:0;top:100%;
+      background:var(--bg-soft);border-bottom:1px solid var(--line);
+      flex-direction:column;gap:0;padding:8px 20px 16px;
+    }
+    nav.main-nav.open{display:flex;}
+    nav.main-nav a{padding:11px 0;border-bottom:1px solid var(--line);}
+    .head-cta{display:none;}
+    .nav-toggle{display:block;}
+    section{padding:44px 0;}
+    .cat-grid{grid-template-columns:1fr;}
+    .hero-facts{gap:20px;}
+  }
+  @media(max-width:420px){
+    .film{flex-direction:column;}
+    .film-thumb{width:100%;flex:none;aspect-ratio:16/9;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="site">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="神马电影院在线第九影院 首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="8.5" stroke="#f5b23e" stroke-width="2"/>
+          <circle cx="12" cy="12" r="3" fill="#f5b23e"/>
+          <path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2" stroke="#f5b23e" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">神马电影院在线第九影院<small>在线观影导航</small></span>
+    </a>
+    <nav class="main-nav" id="nav" aria-label="主导航">
+      <a href="#types">影片分类</a>
+      <a href="#picks">本季选片</a>
+      <a href="#guide">选片方法</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="head-cta" href="#picks">开始选片</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="展开导航">☰</button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="eyebrow">在线观影 · 选片导航</span>
+        <h1>神马电影院在线第九影院</h1>
+        <p class="hero-lead">神马电影院在线第九影院把在线观影常见的几件事收在一页：按类型找片、按时长挑片、按心情选片。这里不做播放承诺，只整理影片分类入口、选片要点和观影前后的实用提示，让你少翻几页、更快决定今晚看什么。</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#picks">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 2.5l9 5.5-9 5.5v-11z" fill="#1a1206"/></svg>
+            浏览本季选片
+          </a>
+          <a class="btn-ghost" href="#guide">看选片方法</a>
+        </div>
+        <div class="hero-facts">
+          <div class="fact"><b>6</b><span>主要影片类型</span></div>
+          <div class="fact"><b>4</b><span>选片参考维度</span></div>
+          <div class="fact"><b>5</b><span>常见问题解答</span></div>
+        </div>
+      </div>
+      <div class="screen-art" aria-hidden="true">
+        <div class="row">
+          <div class="poster p1"><span class="play-badge"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M3.5 1.5l9 5.5-9 5.5v-11z" fill="#1a1206"/></svg></span><span class="cap">剧情 · 长片</span></div>
+          <div class="poster p2"><span class="cap">纪录 · 短片</span></div>
+          <div class="poster p3"><span class="cap">喜剧 · 合家</span></div>
+        </div>
+        <div class="screen-line"></div>
+        <div class="screen-line short"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="types">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">TYPE INDEX</div>
+        <h2>按类型进入：六类常见影片的查找路径</h2>
+        <p>神马电影院在线第九影院的分类不是按平台罗列，而是按观看场景整理。同一部片常能落进多个类型，先确定你想要的观看体验，再进入对应分类，比漫无目的滚动更省时间。</p>
+      </div>
+      <div class="cat-grid">
+        <article class="cat">
+          <div class="cat-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="#f5b23e" stroke-width="1.6"/><path d="M2 8h16" stroke="#f5b23e" stroke-width="1.6"/></svg></div>
+          <h3>剧情长片</h3>
+          <p>适合整块时间观看，人物与情节推进是重点。挑选时留意片长与节奏，超过两小时的片子更适合周末晚间。</p>
+          <span class="tag">90 分钟以上</span>
+        </article>
+        <article class="cat">
+          <div class="cat-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#f5b23e" stroke-width="1.6"/><path d="M10 5.5V10l3 2" stroke="#f5b23e" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>轻喜剧</h3>
+          <p>节奏轻快、情绪负担低，适合碎片时间或家人一起看。可以先看简介里的喜剧标签，再判断是否合口味。</p>
+          <span class="tag">合家观看</span>
+        </article>
+        <article class="cat">
+          <div class="cat-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 15l4-6 3 3 4-7 3 10H3z" stroke="#f5b23e" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <h3>纪录片</h3>
+          <p>真实人物与事件是核心看点。选片时优先看题材是否与你的兴趣重合，再看时长，短片更易一次看完。</p>
+          <span class="tag">真实题材</span>
+        </article>
+        <article class="cat">
+          <div class="cat-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5l2.3 4.7 5.2.8-3.8 3.6.9 5.1-4.6-2.4-4.6 2.4.9-5.1L2.5 8l5.2-.8L10 2.5z" stroke="#f5b23e" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <h3>动画电影</h3>
+          <p>画面与配乐是主要体验，适合放松。家长选片时可先确认简介中的适龄提示，再决定是否与孩子同看。</p>
+          <span class="tag">亲子向</span>
+        </article>
+        <article class="cat">
+          <div class="cat-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#f5b23e" stroke-width="1.6"/><circle cx="10" cy="10" r="3" fill="#f5b23e"/></svg></div>
+          <h3>悬疑推理</h3>
+          <p>需要连续注意力，适合不被打扰的时段。建议提前关掉消息提醒，避免中途打断影响线索理解。</p>
+          <span class="tag">连续观看</span>
+        </article>
+        <article class="cat">
+          <div class="cat-ico" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 5h12M4 10h12M4 15h8" stroke="#f5b23e" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <h3>短片单元</h3>
+          <p>二十分钟以内为主，适合通勤后或睡前。短片信息密度高，看前先看简介，能更快进入情境。</p>
+          <span class="tag">20 分钟以内</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="picks" style="background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">SEASON PICKS</div>
+        <h2>本季选片清单：四种观看场景的对应方案</h2>
+        <p>下面四条是神马电影院在线第九影院按使用场景整理的选片方向，不涉及具体片名与评分，只说明「什么情况下适合看什么」，方便你打开片库后快速定位。</p>
+      </div>
+      <div class="film-list">
+        <article class="film">
+          <div class="film-thumb" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="3" y="5" width="20" height="14" rx="2" stroke="#4fd1c5" stroke-width="1.6"/><path d="M3 10h20" stroke="#4fd1c5" stroke-width="1.6"/></svg></div>
+          <div class="film-body">
+            <h3>周末整段时光</h3>
+            <div class="meta">建议时长 · 100–150 分钟</div>
+            <p>选有完整起承转合的长片，提前留出两小时以上不被打断的时间。打开前先看简介确认题材，避免中途换片浪费兴致。</p>
+            <div class="pills"><span>剧情</span><span>传记</span><span>史诗</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="film-thumb" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="9" stroke="#4fd1c5" stroke-width="1.6"/><path d="M13 8v5l3.5 2" stroke="#4fd1c5" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <div class="film-body">
+            <h3>下班后放松</h3>
+            <div class="meta">建议时长 · 80–100 分钟</div>
+            <p>优先轻喜剧与生活流作品，情节不必复杂，重点是让注意力从工作里抽离。选片时避开沉重题材，情绪会更舒展。</p>
+            <div class="pills"><span>喜剧</span><span>生活</span><span>爱情</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="film-thumb" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M4 20l5-8 4 4 5-9 4 13H4z" stroke="#4fd1c5" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+          <div class="film-body">
+            <h3>与孩子同看</h3>
+            <div class="meta">建议时长 · 90 分钟以内</div>
+            <p>动画与合家欢喜剧更稳妥。看前确认简介里的适龄提示与剧情梗概，避免出现孩子不易理解的桥段，观看体验更顺畅。</p>
+            <div class="pills"><span>动画</span><span>合家欢</span><span>冒险</span></div>
+          </div>
+        </article>
+        <article class="film">
+          <div class="film-thumb" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="8.5" stroke="#4fd1c5" stroke-width="1.6"/><circle cx="13" cy="13" r="3.5" fill="#4fd1c5"/></svg></div>
+          <div class="film-body">
+            <h3>碎片时间补充</h3>
+            <div class="meta">建议时长 · 20 分钟以内</div>
+            <p>短片单元与单集纪录片是首选。时间短不代表信息少，看完一集可以停下来，不必担心被长片绑定整晚。</p>
+            <div class="pills"><span>短片</span><span>纪录</span><span>实验</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">HOW TO CHOOSE</div>
+        <h2>选片方法：四步把「随便看看」变成明确决定</h2>
+        <p>在神马电影院在线第九影院，最常见的困扰不是没片看，而是选择过多。下面四步按顺序执行，通常三分钟内就能定下要看的内容。</p>
+      </div>
+      <div class="guide-wrap">
+        <ol class="steps">
+          <li>
+            <h3>先定可用时间</h3>
+            <p>打开页面之前先看表：今晚有九十分钟还是三小时。时间决定片长区间，先把超出区间的作品排除，选择范围立刻缩小一半。</p>
+          </li>
+          <li>
+            <h3>再定观看状态</h3>
+            <p>是独自专注看，还是边做事边看。专注选悬疑、剧情；分心选喜剧、生活流。状态与类型匹配，观感差异比评分更直接。</p>
+          </li>
+          <li>
+            <h3>读简介与标签</h3>
+            <p>用一到两分钟读简介、看类型标签和片长，确认题材是否在兴趣范围。简介比评分更能说明「这片讲什么」，判断更可靠。</p>
+          </li>
+          <li>
+            <h3>定下就看完</h3>
+            <p>选定后不再频繁切换，是提升观影体验最有效的一步。中途反复换片，往往半小时过去还没进入正片，兴致也会被消耗。</p>
+          </li>
+        </ol>
+        <aside class="tip-card">
+          <h3>观影前的小提示</h3>
+          <ul>
+            <li>提前检查网络与播放设备，避免正片开始后调试。</li>
+            <li>长片建议中途留一次休息，注意力更稳定。</li>
+            <li>与家人同看时，先确认字幕大小与音量是否合适。</li>
+            <li>把想看的片子记成清单，下次不必重新筛选。</li>
+            <li>看完后留一句短评，下次选片更有参照。</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="background:var(--bg-soft);border-top:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">FAQ</div>
+        <h2>常见问题</h2>
+        <p>关于神马电影院在线第九影院这个页面本身，以及在线观影前后的常见疑问，集中回应如下。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>神马电影院在线第九影院是播放平台吗？</summary>
+          <p>这个页面定位是观影导航与选片参考，整理的是影片分类、选片方法与观影提示，不提供片源，也不对具体影片的播放状态作承诺。实际观看请在合法授权的渠道进行。</p>
+        </details>
+        <details>
+          <summary>怎么快速找到适合自己口味的影片？</summary>
+          <p>先用「时间—状态—题材」三层筛选：确定可看多久、是专注还是分心看、偏好哪类题材。三步走完，剩下的候选通常只有几部，比逐条浏览简介快得多。</p>
+        </details>
+        <details>
+          <summary>页面上的分类和片单会长期有效吗？</summary>
+          <p>分类结构稳定，本季选片属于按场景给出的方向性建议，不绑定具体片名，因此不会因片库更新而失效。你随时可以按同样思路在自己的片源中重新挑选。</p>
+        </details>
+        <details>
+          <summary>和家人一起看，选片要注意什么？</summary>
+          <p>优先确认适龄提示与剧情梗概，避开暴力、惊悚等不适合儿童的桥段；片长控制在九十分钟内更利于保持注意力。动画与合家欢喜剧通常是最稳妥的起点。</p>
+        </details>
+        <details>
+          <summary>为什么没有直接列出评分和排行？</summary>
+          <p>评分来自不同平台、口径不一，直接罗列容易造成误读。本页更关注「什么场景看什么」，用片长、类型和观看状态作为判断依据，结论更贴近实际体验。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="endcap">
+    <div class="wrap endcap-inner">
+      <div>
+        <h2>把今晚的片定下来</h2>
+        <p>神马电影院在线第九影院建议你先回到「本季选片」确定场景，再按选片方法四步走。需要离线保存这份选片清单时，可使用下方入口。</p>
+      </div>
+      <a class="dl-btn" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 2v8m0 0l3-3m-3 3L5 7M2.5 12.5h11" stroke="#1a1206" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        下载
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="brand-mark" aria-hidden="true" style="width:36px;height:36px;border-radius:10px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#f5b23e" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="#f5b23e"/></svg>
+        </span>
+        <div>
+          <strong>神马电影院在线第九影院</strong>
+          <p>在线观影导航页：按类型、场景与时长整理选片路径，提供观影前后的实用提示，帮助你更快做出观看决定。</p>
+        </div>
+      </div>
+      <div class="foot-links">
+        <div>
+          <h4>页面导航</h4>
+          <a href="#types">影片分类</a>
+          <a href="#picks">本季选片</a>
+          <a href="#guide">选片方法</a>
+          <a href="#faq">常见问题</a>
+        </div>
+        <div>
+          <h4>使用说明</h4>
+          <a href="#guide">观影提示</a>
+          <a href="#faq">页面定位</a>
+          <a href="#top">回到顶部</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 神马电影院在线第九影院 · 内容为观影导航与选片参考，不提供片源</span>
+      <span>请在合法授权渠道观看影片</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var t=document.getElementById('navToggle'),n=document.getElementById('nav');
+    if(!t||!n)return;
+    t.addEventListener('click',function(){
+      var open=n.classList.toggle('open');
+      t.setAttribute('aria-expanded',open?'true':'false');
+    });
+    n.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){n.classList.remove('open');t.setAttribute('aria-expanded','false');}
+    });
+  })();
+</script>
+</body>
+  </html>
