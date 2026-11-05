@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>看片入口-在线看片入口导航_找片入口与看片站入口合集</title>
+<meta name="description" content="看片入口是一个整理看片入口信息的导航首页，汇总找片入口、在线看片入口与看片站入口的常见类型与选择要点，帮助你快速理清看片入口的使用思路与查找路径。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23151a2b'/%3E%3Cpath d='M24 18l22 14-22 14z' fill='%23ffb43a'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#0f1320;
+  --bg2:#151a2b;
+  --card:#1b2134;
+  --line:#2a3149;
+  --text:#e8ebf4;
+  --muted:#a3abc2;
+  --accent:#ffb43a;
+  --accent2:#5ad1c4;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+.accent{color:var(--accent)}
+
+/* 页头 */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,19,32,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.08rem;letter-spacing:.5px;white-space:nowrap}
+.logo-mark{width:34px;height:34px;flex:0 0 34px}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{
+  font-size:.92rem;color:var(--muted);padding:7px 12px;border-radius:9px;
+  transition:color .2s,background .2s;
+}
+.nav a:hover,.nav a:focus-visible{color:var(--text);background:#222a40}
+.menu-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:9px;padding:6px 10px;font-size:.9rem;cursor:pointer}
+
+/* 首屏 */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(900px 380px at 82% -10%,rgba(255,180,58,.16),transparent 65%),
+    radial-gradient(700px 340px at 8% 110%,rgba(90,209,196,.13),transparent 65%),
+    linear-gradient(180deg,var(--bg2),var(--bg));
+  border-bottom:1px solid var(--line);
+}
+.hero-inner{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;padding:64px 0 60px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--accent2);
+  border:1px solid rgba(90,209,196,.35);background:rgba(90,209,196,.08);
+  padding:4px 12px;border-radius:999px;margin-bottom:18px;letter-spacing:.5px;
+}
+h1{font-size:2.6rem;line-height:1.25;font-weight:800;letter-spacing:1px;margin-bottom:16px}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:34em;margin-bottom:26px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 22px;border-radius:11px;font-size:.95rem;font-weight:600;
+  border:1px solid transparent;transition:transform .15s,background .2s,color .2s;
+}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:var(--accent);color:#1a1205}
+.btn-primary:hover{background:#ffc663}
+.btn-ghost{border-color:var(--line);color:var(--text);background:#1b2134}
+.btn-ghost:hover{background:#242c44}
+.btn[aria-disabled="true"]{opacity:.62;cursor:not-allowed;pointer-events:none}
+.hero-visual{
+  background:var(--card);border:1px solid var(--line);border-radius:20px;
+  padding:22px;box-shadow:0 24px 60px -30px rgba(0,0,0,.9);
+}
+.hero-visual h2{font-size:.85rem;color:var(--muted);font-weight:600;letter-spacing:1px;margin-bottom:14px}
+.mini-list{list-style:none;display:grid;gap:10px}
+.mini-list li{
+  display:flex;align-items:center;gap:11px;font-size:.9rem;color:#cfd5e6;
+  background:#222a40;border:1px solid #2f3853;border-radius:10px;padding:10px 12px;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex:0 0 8px}
+.dot.alt{background:var(--accent)}
+
+/* 通用分区 */
+section{padding:56px 0}
+.section-head{margin-bottom:30px;max-width:44em}
+.section-kicker{font-size:.78rem;letter-spacing:2px;color:var(--accent);font-weight:700;text-transform:uppercase;margin-bottom:8px}
+h2.section-title{font-size:1.6rem;font-weight:700;letter-spacing:.5px;margin-bottom:10px}
+.section-desc{color:var(--muted);font-size:.95rem}
+
+/* 卡片网格 */
+.grid{display:grid;gap:18px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;transition:border-color .2s,transform .2s;
+}
+.card:hover{border-color:#3a4566;transform:translateY(-2px)}
+.card-icon{width:38px;height:38px;margin-bottom:14px}
+.card h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.card p{font-size:.9rem;color:var(--muted)}
+
+/* 步骤 */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:step}
+.step{
+  position:relative;background:linear-gradient(180deg,#1e2538,#181e2f);
+  border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px 22px;
+}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-size:.78rem;font-weight:800;letter-spacing:2px;color:var(--accent);
+  display:block;margin-bottom:10px;
+}
+.step h3{font-size:1rem;margin-bottom:8px}
+.step p{font-size:.9rem;color:var(--muted)}
+
+/* 要点列表 */
+.checks{list-style:none;display:grid;gap:14px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:.94rem;color:#cdd3e4}
+.check-mark{flex:0 0 20px;width:20px;height:20px;margin-top:4px}
+
+/* 表格 */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card)}
+table{width:100%;border-collapse:collapse;min-width:560px;font-size:.9rem}
+th,td{padding:13px 16px;text-align:left;border-bottom:1px solid var(--line)}
+th{color:var(--accent2);font-weight:600;background:#1f2740;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td{color:#c8cee0}
+
+/* 问答 */
+.faq{display:grid;gap:12px}
+details{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;
+}
+details[open]{border-color:#3a4566}
+summary{
+  cursor:pointer;font-weight:600;font-size:.97rem;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--accent);font-size:1.15rem;font-weight:700;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;font-size:.92rem;color:var(--muted)}
+
+/* 提示条 */
+.notice{
+  display:flex;gap:14px;align-items:flex-start;
+  background:rgba(255,180,58,.07);border:1px solid rgba(255,180,58,.3);
+  border-radius:var(--radius);padding:18px 20px;font-size:.9rem;color:#e3d6bb;
+}
+.notice svg{flex:0 0 22px;width:22px;height:22px;margin-top:2px}
+
+/* 页尾 */
+.site-footer{border-top:1px solid var(--line);background:var(--bg2);padding:38px 0 30px}
+.footer-inner{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.footer-brand{font-weight:700;font-size:1rem;margin-bottom:8px}
+.footer-note{font-size:.85rem;color:var(--muted);max-width:42em}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem}
+.footer-links a{color:var(--muted)}
+.footer-links a:hover{color:var(--accent)}
+.copyright{margin-top:22px;font-size:.8rem;color:#6d7590}
+
+/* 移动端 */
+@media (max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:30px;padding:44px 0 46px}
+  h1{font-size:2.05rem}
+  .grid-3{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .menu-toggle{display:block}
+  .nav{
+    display:none;position:absolute;top:66px;left:0;right:0;
+    background:var(--bg2);border-bottom:1px solid var(--line);
+    padding:10px 20px 16px;flex-direction:column;
+  }
+  .nav.open{display:flex}
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  h1{font-size:1.72rem}
+  h2.section-title{font-size:1.32rem}
+  section{padding:40px 0}
+  .hero-sub{font-size:.95rem}
+  .btn{width:100%}
+  .hero-actions{flex-direction:column}
+  .hero-visual{padding:18px}
+}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="#top" aria-label="看片入口 首页">
+      <svg class="logo-mark" viewBox="0 0 64 64" role="img" aria-hidden="true">
+        <rect width="64" height="64" rx="14" fill="#1b2134" stroke="#ffb43a" stroke-width="2"/>
+        <path d="M24 18l22 14-22 14z" fill="#ffb43a"/>
+      </svg>
+      <span>看片入口</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainnav">菜单</button>
+    <nav class="nav" id="mainnav" aria-label="主导航">
+      <a href="#types">入口类型</a>
+      <a href="#howto">查找思路</a>
+      <a href="#checklist">选择要点</a>
+      <a href="#compare">对比说明</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="hero-tag">导航 · 整理 · 说明</span>
+        <h1>看片入口</h1>
+        <p class="hero-sub">看片入口是一个围绕“看片入口”整理的导航型首页。这里不提供片源本身，而是把找片入口、在线看片入口、看片站入口的常见类型、查找思路与选择要点集中说清楚，让你在找片之前先看清入口本身。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#types">查看入口类型</a>
+          <a class="btn btn-ghost" href="#howto">了解查找思路</a>
+        </div>
+      </div>
+      <aside class="hero-visual" aria-label="入口速览">
+        <h2>入口速览</h2>
+        <ul class="mini-list">
+          <li><span class="dot"></span>找片入口：先明确片名与年份</li>
+          <li><span class="dot alt"></span>在线看片入口：确认可访问与清晰度</li>
+          <li><span class="dot"></span>看片站入口：留意页面结构与说明</li>
+          <li><span class="dot alt"></span>看片入口导航：按需求逐项核对</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- 入口类型 -->
+  <section id="types">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Entry Types</div>
+        <h2 class="section-title">看片入口的几种常见类型</h2>
+        <p class="section-desc">同样是“看片入口”，背后的用途并不相同。先分清类型，再决定从哪一类看片入口开始找，能省下不少来回切换的时间。</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="#ffb43a" stroke-width="2"/><path d="M16 13l11 7-11 7z" fill="#ffb43a"/></svg>
+          <h3>找片入口</h3>
+          <p>以片名、年份、类型为线索的查找类看片入口，重点在于检索是否准确、结果是否对得上你要找的那一部。</p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="8" width="32" height="22" rx="3" fill="none" stroke="#5ad1c4" stroke-width="2"/><path d="M14 34h12" stroke="#5ad1c4" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>在线看片入口</h3>
+          <p>直接进入播放页面的看片入口，关注点转向加载速度、清晰度选项与播放页面的信息是否完整。</p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 12h28M6 20h28M6 28h18" stroke="#ffb43a" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <h3>看片站入口</h3>
+          <p>以站点为单位的看片入口，通常带分类与列表页，适合按题材、地区或更新时间浏览，而不是只找一部片。</p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="15" fill="none" stroke="#5ad1c4" stroke-width="2"/><path d="M20 11v9l6 4" stroke="#5ad1c4" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>更新型入口</h3>
+          <p>侧重近期更新的看片入口，适合想跟进新内容的人。看片入口的更新频率是这类页面最值得留意的信息。</p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="7" width="26" height="26" rx="4" fill="none" stroke="#ffb43a" stroke-width="2"/><path d="M13 20h14M20 13v14" stroke="#ffb43a" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>合集型入口</h3>
+          <p>把同类主题打包的看片入口，例如按系列、按导演或按榜单聚合，适合已有大致方向时使用。</p>
+        </article>
+        <article class="card">
+          <svg class="card-icon" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l13 7v16l-13 7-13-7V12z" fill="none" stroke="#5ad1c4" stroke-width="2"/><path d="M20 13v8" stroke="#5ad1c4" stroke-width="2.4" stroke-linecap="round"/><circle cx="20" cy="27" r="1.8" fill="#5ad1c4"/></svg>
+          <h3>说明型入口</h3>
+          <p>像本页这样以说明为主的看片入口整理页，重点不在链接数量，而在于把入口的判断标准讲清楚。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 查找思路 -->
+  <section id="howto">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Workflow</div>
+        <h2 class="section-title">从一个看片入口到目标内容的查找思路</h2>
+        <p class="section-desc">找片的过程可以拆成三步。每一步只解决一个问题，避免在看片入口之间反复跳转却始终没有落到具体内容上。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>先锁定片名</h3>
+          <p>把片名、年份、地区尽量写全，再用一个看片入口做首轮检索。信息越具体，检索结果越不容易跑偏。</p>
+        </div>
+        <div class="step">
+          <h3>再核对入口</h3>
+          <p>进入看片入口后先看页面结构：是否有简介、分类、更新时间。结构清楚的看片入口，通常更容易判断内容是否对得上。</p>
+        </div>
+        <div class="step">
+          <h3>最后做记录</h3>
+          <p>把可用的看片入口按用途记下来，分成找片、浏览、跟进三类，下次直接按分类进入，减少重复筛选。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 选择要点 -->
+  <section id="checklist">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Checklist</div>
+        <h2 class="section-title">挑选看片入口时值得核对的要点</h2>
+        <p class="section-desc">下面这些要点来自日常使用中的常见判断，不涉及任何具体站点的推荐，只作为选择看片入口时的参考清单。</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card">
+          <ul class="checks">
+            <li>
+              <svg class="check-mark" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#5ad1c4" stroke-width="1.8"/><path d="M6 10.5l3 3 5-6" fill="none" stroke="#5ad1c4" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>页面信息是否完整：片名、简介、分类是否齐全，是判断看片入口质量的第一步。</span>
+            </li>
+            <li>
+              <svg class="check-mark" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#5ad1c4" stroke-width="1.8"/><path d="M6 10.5l3 3 5-6" fill="none" stroke="#5ad1c4" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>是否便于检索：有明确搜索框或分类导航的看片入口，使用成本更低。</span>
+            </li>
+            <li>
+              <svg class="check-mark" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#5ad1c4" stroke-width="1.8"/><path d="M6 10.5l3 3 5-6" fill="none" stroke="#5ad1c4" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>更新是否可查：能看出更新时间的看片入口，比完全看不到时间信息的更可靠。</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card">
+          <ul class="checks">
+            <li>
+              <svg class="check-mark" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#ffb43a" stroke-width="1.8"/><path d="M6 10.5l3 3 5-6" fill="none" stroke="#ffb43a" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>移动端是否可用：手机访问时排版是否错乱，影响看片入口的实际使用体验。</span>
+            </li>
+            <li>
+              <svg class="check-mark" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#ffb43a" stroke-width="1.8"/><path d="M6 10.5l3 3 5-6" fill="none" stroke="#ffb43a" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>说明是否清楚：对内容来源、分类规则有说明的看片入口，理解起来更省力。</span>
+            </li>
+            <li>
+              <svg class="check-mark" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="none" stroke="#ffb43a" stroke-width="1.8"/><path d="M6 10.5l3 3 5-6" fill="none" stroke="#ffb43a" stroke-width="2" stroke-linecap="round"/></svg>
+              <span>备用路径：同一个目标保留两个不同看片入口，可减少单点失效带来的中断。</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="notice" style="margin-top:22px">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l9 16H3z" fill="none" stroke="#ffb43a" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 9v5" stroke="#ffb43a" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="1.2" fill="#ffb43a"/></svg>
+        <p>看片入口只是查找路径的起点。访问任何站点时，都应遵守当地法律法规与平台使用条款，注意账号与设备安全，不轻信来源不明的下载与安装提示。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 对比说明 -->
+  <section id="compare">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Comparison</div>
+        <h2 class="section-title">不同看片入口的侧重对比</h2>
+        <p class="section-desc">把关键维度摊开对比，比单看某一个看片入口更容易做出选择。下表只描述类型差异，不针对任何具体站点。</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>入口类型</th>
+              <th>主要用途</th>
+              <th>关注重点</th>
+              <th>适合场景</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>找片入口</td>
+              <td>按片名精确查找</td>
+              <td>检索准确度</td>
+              <td>已知片名与年份</td>
+            </tr>
+            <tr>
+              <td>在线看片入口</td>
+              <td>直接进入播放页</td>
+              <td>加载与清晰度</td>
+              <td>想尽快开始观看</td>
+            </tr>
+            <tr>
+              <td>看片站入口</td>
+              <td>按分类浏览内容</td>
+              <td>分类与列表结构</td>
+              <td>没有明确目标时</td>
+            </tr>
+            <tr>
+              <td>更新型入口</td>
+              <td>跟进近期内容</td>
+              <td>更新时间可见性</td>
+              <td>关注新上线内容</td>
+            </tr>
+            <tr>
+              <td>说明型入口</td>
+              <td>了解判断标准</td>
+              <td>说明是否清楚</td>
+              <td>初次接触看片入口</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-desc" style="margin-top:18px">同一部片往往能在多个看片入口中找到，差别在于路径长短与信息完整度。先按用途选类型，再按要点做筛选，是相对稳妥的顺序。</p>
+    </div>
+  </section>
+
+  <!-- 问答 -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">FAQ</div>
+        <h2 class="section-title">关于看片入口的常见问题</h2>
+        <p class="section-desc">整理几个初次接触看片入口时最常出现的疑问，帮助你把概念和边界先分清。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>看片入口是片源吗？</summary>
+          <p>不是。看片入口指的是进入查找或浏览路径的起点，本页只整理入口的类型与判断方法，不提供片源，也不对任何站点的内容作出承诺。</p>
+        </details>
+        <details>
+          <summary>为什么需要区分不同类型的看片入口？</summary>
+          <p>因为用途不同。找片入口解决“知道片名却找不到”的问题，看片站入口解决“没有明确目标”的问题。先分清类型，能减少无效的来回切换。</p>
+        </details>
+        <details>
+          <summary>看片入口的信息多久会变化？</summary>
+          <p>入口地址与页面结构都可能调整，本页不承诺任何具体入口的长期有效性。建议按本页的要点自行核对，并把可用的看片入口分类记录下来。</p>
+        </details>
+        <details>
+          <summary>手机上使用看片入口要注意什么？</summary>
+          <p>优先确认页面在窄屏下是否可读、按钮是否容易点击。对于要求安装未知应用或输入敏感信息的看片入口，应保持谨慎，避免随意授权。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 收束 -->
+  <section id="start">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-kicker">Start</div>
+        <h2 class="section-title">从整理自己的看片入口清单开始</h2>
+        <p class="section-desc">与其每次临时搜索，不如先按上面的类型与要点，把常用的看片入口分成找片、浏览、跟进三类记下来。需要时直接进入对应分类，查找过程会清晰很多。本页作为看片入口的说明与导航首页，会持续围绕入口类型与选择方法补充内容。</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#types">回到入口类型</a>
+        <a class="btn btn-ghost" href="#checklist">查看选择要点</a>
+        <a class="btn btn-ghost" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">看片入口</div>
+        <p class="footer-note">看片入口是一个围绕入口类型、查找思路与选择要点整理的说明型导航首页，不提供片源，不承诺任何具体站点的可用性。</p>
+      </div>
+      <nav class="footer-links" aria-label="页尾导航">
+        <a href="#types">入口类型</a>
+        <a href="#howto">查找思路</a>
+        <a href="#checklist">选择要点</a>
+        <a href="#compare">对比说明</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+    </div>
+    <div class="copyright">© 2025 看片入口 · 内容仅作入口说明与整理参考</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.querySelector('.menu-toggle');
+  var nav = document.getElementById('mainnav');
+  if(!btn || !nav) return;
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.addEventListener('click', function(e){
+    if(e.target.tagName === 'A'){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded','false');
+    }
+  });
+})();
+</script>
+</body>
+</html>
